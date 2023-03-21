@@ -162,6 +162,74 @@ def rejecttransectionfrommetamask():
      #sswitch to web window
      driver.switch_to.window(driver.window_handles[0])
      time.sleep(3)
-                    
+
+def addtoken(tokenAddress):
+     #open metamask
+    print("adding token")
+    driver.switch_to.window(driver.window_handles[1])
+    driver.get('chrome-extension://{}/home.html'.format(EXTENSHION_ID))
+    print("cliosing popup")
+    time.sleep(5)
+    driver.find_element_by_xpath("//*[@id="popover-content"]/div/div/section/header/div/button").click()
+    # driver.find_element_by_xpath('//*[@id="app-content"]/div/div[1]/div/div[2]/div[1]/div/span').click()
+    # time.sleep(2)
+    
+    print("clicking add token button")    
+    driver.find_element_by_xpath('//*[@id="app-content"]/div/div[4]/div/div/div/div[3]/div/div[3]/button').click()
+    time.sleep(2)
+
+    #adding address
+    driver.find_element_by_id("custom-address").send_keys(tokenAddress)
+    time.sleep(2)
+    driver.find_element_by_xpath('//*[@id="app-content"]/div/div[4]/div/div[2]/div[2]/footer/button[2]').click()
+    time.sleep(2)
+    # add tokens
+    driver.find_element_by_xpath('//*[@id="app-content"]/div/div[4]/div/div[3]/footer/button[2]').click()
+    time.sleep(2)
+    driver.switch_to.window(driver.window_handles[0])
+    time.sleep(2)
+    print("token added successfully")
+
+def signConfirm():
+    print("sign")
+    time.sleep(3)
+
+    driver.execute_sciript("window.open('');")  
+    driver.switch_to.window(driver.window_handles[1])
+
+    driver.get("chrome-extension://{}/popup.html".format(EXTENSHION_ID))
+    time.sleep(5)
+    driver.execute_script("window.scrollBy(0, document.body.scrolHeight)")
+    time.sleep(3)
+    #driver.find_element_by_xpath("//*[@id="app-content"]/div/div[3]/div/div[2]/div[2]/div[2]/footer/button[2]").click()
+    #time.sleep(3)
+    print('sign confirmed')
+    print(driver.window_handles)
+    driver.switch_to.window(driver.window_handles[0])
+    time.sleep(3)
+
+    #reject sign
+def signReject():
+    print("sign")
+    time.sleep(3)
+    
+    driver.execute_script("window.open('');")
+    driver.switch_to.window(driver.window_handles[1])
+
+    driver.get("chrome-extension://{}/popup.html".format(EXTENSHION_ID))
+    time.sleep(5)
+    driver.execute_script("window.scrollBy(0, document.body.scrollHeight)")
+    time.sleep(3)
+    driver.find_element_by_xpath('//*[@id="app-content"]/div/div[3]/div/div[3]/button[1]').click()
+    time.sleep(1)
+    # driver.find_element_by_xpath('//*[@id="app-content"]/div/div[3]/div/div[2]/div[2]/div[2]/footer/button[2]').click()
+    # time.sleep(3)
+    print('sign rejected')
+    print(driver.window_handles)
+    driver.switch_to.window(driver.window_handles[0])
+    time.sleep(3)
+
+
+
 
 
