@@ -1,3 +1,4 @@
+import selenium_metamask_automation
 from selenium import webdriver
 import time
 from selenium.webdriver.chrome.options import Options
@@ -27,64 +28,64 @@ def launchSeleniumWebdriver(driverPath):
     return driver
 
 
-def metamaskSetup(recoveryPhrase, password):
-    driver.switch_to.window(driver.window_handles[0])
+# def metamaskSetup(recoveryPhrase, password):
+#     driver.switch_to.window(driver.window_handles[0])
 
-    driver.find_element_by_xpath('//button[text()="Get Started"]').click()
-    driver.find_element_by_xpath('//button[text()="Import wallet"]').click()
-    driver.find_element_by_xpath('//button[text()="No Thanks"]').click()
+#     driver.find_element_by_xpath('//button[text()="Get Started"]').click()
+#     driver.find_element_by_xpath('//button[text()="Import wallet"]').click()
+#     driver.find_element_by_xpath('//button[text()="No Thanks"]').click()
 
-    time.sleep(5)
+#     time.sleep(5)
 
-    inputs = driver.find_elements_by_xpath('//input')
-    inputs[0].send_keys(recoveryPhrase)
-    inputs[1].send_keys(password)
-    inputs[2].send_keys(password)
-    driver.find_element_by_css_selector('.first-time-flow__terms').click()
-    driver.find_element_by_xpath('//button[text()="Import"]').click()
+#     inputs = driver.find_elements_by_xpath('//input')
+#     inputs[0].send_keys(recoveryPhrase)
+#     inputs[1].send_keys(password)
+#     inputs[2].send_keys(password)
+#     driver.find_element_by_css_selector('.first-time-flow__terms').click()
+#     driver.find_element_by_xpath('//button[text()="Import"]').click()
 
-    time.sleep(5)
+#     time.sleep(5)
 
-    driver.find_element_by_xpath('//button[text()="All Done"]').click()
-    time.sleep(2)
+#     driver.find_element_by_xpath('//button[text()="All Done"]').click()
+#     time.sleep(2)
 
-    # closing the message popup after all done metamask screen
-    driver.find_element_by_xpath('//*[@id="popover-content"]/div/div/section/header/div/button').click()
-    time.sleep(2)
-    print("Wallet has been imported successfully")
-    time.sleep(10)
+#     # closing the message popup after all done metamask screen
+#     driver.find_element_by_xpath('//*[@id="popover-content"]/div/div/section/header/div/button').click()
+#     time.sleep(2)
+#     print("Wallet has been imported successfully")
+#     time.sleep(10)
 
 
-def changeMetamaskNetwork(networkName):
-    # opening network
-    print("Changing network")
-    driver.switch_to.window(driver.window_handles[1])
-    driver.get('chrome-extension://{}/home.html'.format(EXTENSION_ID))
-    print("closing popup")
-    time.sleep(5)
-    driver.find_element_by_xpath('//*[@id="popover-content"]/div/div/section/header/div/button').click()
+# def changeMetamaskNetwork(networkName):
+#     # opening network
+#     print("Changing network")
+#     driver.switch_to.window(driver.window_handles[1])
+#     driver.get('chrome-extension://{}/home.html'.format(EXTENSION_ID))
+#     print("closing popup")
+#     time.sleep(5)
+#     driver.find_element_by_xpath('//*[@id="popover-content"]/div/div/section/header/div/button').click()
 
-    driver.find_element_by_xpath('//*[@id="app-content"]/div/div[1]/div/div[2]/div[1]/div/span').click()
-    time.sleep(2)
-    print("opening network dropdown")
-    elem = driver.find_element_by_xpath('//*[@id="app-content"]/div/div[3]/div')
-    time.sleep(2)
-    all_li = elem.find_elements_by_tag_name("li")
-    time.sleep(2)
-    for li in all_li:
-        text = li.text
-        if (text == networkName):
-            li.click()
-            print(text, "is selected")
-            time.sleep(2)
-            driver.switch_to.window(driver.window_handles[0])
-            time.sleep(3)
-            return
-    time.sleep(2)
-    print("Please provide a valid network name")
+#     driver.find_element_by_xpath('//*[@id="app-content"]/div/div[1]/div/div[2]/div[1]/div/span').click()
+#     time.sleep(2)
+#     print("opening network dropdown")
+#     elem = driver.find_element_by_xpath('//*[@id="app-content"]/div/div[3]/div')
+#     time.sleep(2)
+#     all_li = elem.find_elements_by_tag_name("li")
+#     time.sleep(2)
+#     for li in all_li:
+#         text = li.text
+#         if (text == networkName):
+#             li.click()
+#             print(text, "is selected")
+#             time.sleep(2)
+#             driver.switch_to.window(driver.window_handles[0])
+#             time.sleep(3)
+#             return
+#     time.sleep(2)
+#     print("Please provide a valid network name")
 
-    driver.switch_to.window(driver.window_handles[0])
-    time.sleep(3)
+#     driver.switch_to.window(driver.window_handles[0])
+#     time.sleep(3)
 
 
 def connectToWebsite():
