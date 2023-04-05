@@ -22,15 +22,17 @@ driver.get("https://testnet.elumnt.com/login")
 wait = WebDriverWait(driver, 25)
 #signin = wait.until(EC.element_to_be_clickable((By.XPATH, "//button[@type='button'])[5]")))
 #click on sign in metamask
-signin_metamask= wait.until(EC.element_to_be_clickable((By.XPATH, "(//span)[5]")))
+connect_wallet= wait.until(EC.element_to_be_clickable((By.CLASS_NAME, "login-btn btn btn-primary")))
+connect_wallet.click()
+signin_metamask= wait.until(EC.element_to_be_clickable((By.CLASS_NAME, "mb-0")))
 signin_metamask.click()
 #send keys to the app like name email and password
 name = wait.until(EC.element_to_be_clickable((By.XPATH, "(//input[@id='exampleForm.ControlInput1'])[1]")))
-name.send_keys("qadarmunir")
+name.send_keys("umair_khan")
 fullname = wait.until(EC.element_to_be_clickable((By.XPATH, "(//input[@id='exampleForm.ControlInput1'])[2]")))
-fullname.send_keys("ghulamqadar")
+fullname.send_keys("omairkhan")
 email = wait.until(EC.element_to_be_clickable((By.XPATH, "(//input[@id='exampleForm.ControlInput1'])[3]")))
-email.send_keys("qadar0011@gamil.com")
+email.send_keys("qadar00111@gamil.com")
 
 #click on check box
 check_box1 = wait.until(EC.element_to_be_clickable((By.XPATH, "(//span)[17]")))
